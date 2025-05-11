@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- GNSS -->
+  <include file="$(find septentrio_gnss_driver)/launch/rover.launch" />
+  
+  <node name="gem_rviz_text" pkg="gem_rviz_markers" type="gem_rviz_text.py" />
+  <node name="gem_gnss_image" pkg="gem_gnss_image" type="gem_gnss_image.py" />
+  
+</launch>
+
+
+
+
+
+
+
