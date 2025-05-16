@@ -9,6 +9,7 @@ import readline
 import glob
 import os
 # Got trouble with the import of alvinxy, so I just copied the function
+x=1
 def  mdeglat(lat):
     '''
     Provides meters-per-degree latitude at a given latitude
