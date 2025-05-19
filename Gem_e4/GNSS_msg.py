@@ -7,6 +7,7 @@ import math
 import numpy as np
 from numpy import linalg as la
 import scipy.signal as signal
+from geometry import Point, Rectangle, Circle, Ring
 
 # ROS Headers
 import alvinxy.alvinxy as axy # Import AlvinXY transformation module
@@ -14,9 +15,14 @@ import rospy
 
 # GEM Sensor Headers
 from std_msgs.msg import String, Bool, Float32, Float64
-from novatel_gps_msgs.msg import NovatelPosition, NovatelXYZ, Inspva
-from sensor_msgs.msg import NavSatFix
-from septentrio_gnss_driver.msg import INSNavGeod
+try:
+    from novatel_gps_msgs.msg import NovatelPosition, NovatelXYZ, Inspva
+    from sensor_msgs.msg import NavSatFix
+    from septentrio_gnss_driver.msg import INSNavGeod
+except ImportError:
+    print("GNSS messages not found. Please install the required packages.")
+    pass
+
 
 # GEM PACMod Headers
 from pacmod_msgs.msg import PositionWithSpeed, PacmodCmd, SystemRptFloat, VehicleSpeedRpt
@@ -158,6 +164,25 @@ class Gem_e4_gnss_msg:
         curr_x = local_x_curr - self.offset * np.cos(curr_yaw)
         curr_y = local_y_curr - self.offset * np.sin(curr_yaw)
 
-        return round(curr_x, 3), round(curr_y, 3), round(curr_yaw, 4)
+        # use bicycle model to calculate the kinematics
+
+        self.heading = curr_yaw
+        speed = self.speed
+        heading = self.heading
+        # Kinematic bicycle model dynamics based on
+        # "Kinematic and Dynamic Vehicle Models for Autonomous Driving Control Design" by
+        # Jason Kong, Mark Pfeiffer, Georg Schildbach, Francesco Borrelli
+        lr = self.rear_dist
+        lf = lr # we assume the center of mass is the same as the geometric center of the entity
+        beta = np.arctan(lr / (lf + lr) * np.tan(self.inputSteering))
+
+        new_angular_velocity = speed * self.inputSteering # this is not needed and used for this model, but let's keep it for consistency (and to avoid if-else statements)
+        new_acceleration = self.inputAcceleration - self.friction
+        new_speed = np.clip(speed + new_acceleration * dt, self.min_speed, self.max_speed)
+        new_heading = heading + ((speed + new_speed)/lr)*np.sin(beta)*dt/2.
+        angle = (heading + new_heading)/2. + beta
+        new_center = self.center + (speed + new_speed)*Point(np.cos(angle), np.sin(angle))*dt / 2.
+        new_velocity = Point(new_speed * np.cos(new_heading), new_speed * np.sin(new_heading))
+        return round(curr_x, 3), round(curr_y, 3), round(curr_yaw, 4), round(self.speed, 3) ,new_acceleration, new_angular_velocity
 
         

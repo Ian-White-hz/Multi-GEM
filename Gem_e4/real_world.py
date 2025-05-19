@@ -1,6 +1,7 @@
 import numpy as np
 from world import World
 from agents import Car, RectangleBuilding, Pedestrian, Painting
+from interactive_controllers import KeyboardController, SteeringWheelController
 
 from geometry import Point
 import time
@@ -80,11 +81,14 @@ for k in range(750):
     UH = mpc.human_actions
     c1.set_control(UR[0, 0], UR[0, 1])
     # assuming the human car is always still
-    c2.set_control(0, 0)
+    # c2.set_control(0, 0)
+    c2.set_control(controller.steering, controller.throttle)
     state = [k, c1.x, c1.y, c1.heading, c2.x, c2.y, c2.heading, c1.collidesWith(c2), highway_score, total_score]
     action = [UR[0, 0], UR[0, 1], controller.steering, controller.throttle]
     dataset.append(state + action)
     w.tick()
+    # use update to get real world data
+    # w.update()
     human_car_y1 = c2.y
     w.render()
 

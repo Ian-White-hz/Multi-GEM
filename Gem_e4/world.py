@@ -1,9 +1,9 @@
+from __future__ import print_function
 from agents import Car, Pedestrian, RectangleBuilding
 from entities import Entity
 from typing import Union
 from visualizer import Visualizer
 from GNSS_msg import Gem_e4_gnss_msg
-from __future__ import print_function
 
 # Python Headers
 import os 
@@ -19,9 +19,13 @@ import rospy
 
 # GEM Sensor Headers
 from std_msgs.msg import String, Bool, Float32, Float64
-from novatel_gps_msgs.msg import NovatelPosition, NovatelXYZ, Inspva
-from sensor_msgs.msg import NavSatFix
-from septentrio_gnss_driver.msg import INSNavGeod
+try:
+    from novatel_gps_msgs.msg import NovatelPosition, NovatelXYZ, Inspva
+    from sensor_msgs.msg import NavSatFix
+    from septentrio_gnss_driver.msg import INSNavGeod
+except ImportError:
+    print("GNSS messages not found. Please install the required packages.")
+    pass
 
 # GEM PACMod Headers
 from pacmod_msgs.msg import PositionWithSpeed, PacmodCmd, SystemRptFloat, VehicleSpeedRpt
