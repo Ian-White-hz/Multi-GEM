@@ -9,11 +9,10 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 
 from gazebo_msgs.msg import  ModelState
-from src.mp2.src.controller import vehicleController,steeringWheelController
 import time
-from src.mp2.src.waypoint_list import WayPoints
-from  src.mp2.src.util  import euler_to_quaternion, quaternion_to_euler
-from src.mp2.src.controller import vehicleController, MPCcontroller
+from waypoint_list import WayPoints
+from util  import euler_to_quaternion, quaternion_to_euler
+from controller import MPCcontroller
 
 #checks gps distance(euclidean) between e2-e4
 def checkdistance(currState_e2,currState_e4):
@@ -35,10 +34,7 @@ def run_model():
     controller_e4 = MPCcontroller()
     waypoints_e4 = WayPoints()
     pos_list_e4 = waypoints_e4.getWayPoints2_highbay()
-        
-    #e2 - human driven car controller+waypoint setup
-    controller_e2 = vehicleController(keyboardControl=False)
-    
+
     #initialize safety_flag
     safety_flag=False
     e2_flag=False
@@ -73,14 +69,6 @@ def run_model():
         cur_time = rospy.Time.now()
         
         rate.sleep()
-        
-        #Get the current position and orientation of the vehicle
-        currState_e2 = controller_e2.getModelState1()
-        currState_e4 = controller_e4.getModelState2()
-
-        if not currState_e2.success or not currState_e4.success:
-            print("No model state")
-            continue
 
         # #Check safety violations --- as of now it checks only distance between e2-e4
         # if(checkdistance(currState_e2,currState_e4)):
@@ -112,12 +100,11 @@ def run_model():
         # e2_pos_x, e2_pos_y, e2_vel, e2_yaw = controller_e2.extract_vehicle_info(currState_e2)
         # e4_pos_x, e4_pos_y, e4_vel, e4_yaw = controller_e4.extract_vehicle_info(currState_e4)
         # e2_start_time = rospy.Time.now()
-        controller_e2.set_steering_control()
         # e2_end_time = rospy.Time.now()
         # rospy.loginfo("E2 steering time: " + str((e2_end_time - e2_start_time).to_sec()))
         
         # e4_start_time = rospy.Time.now()
-        controller_e4.execute_e4(currState_e4, currState_e2)
+        controller_e4.execute_e4()
         # e4_end_time = rospy.Time.now()
         # rospy.loginfo("E4 steering time: " + str((e4_end_time - e4_start_time).to_sec()))
         # loop_end_time = rospy.Time.now()
