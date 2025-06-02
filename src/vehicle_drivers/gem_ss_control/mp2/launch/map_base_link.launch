@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<!-- map_to_base_link.launch -->
+<launch>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_e4_start" args="-0.6 -8.7 0 0 0 0.707 0.707 /map /e4_start" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_e2" args="3.85463 3.63636 0 0 0 0.707 0.707 /map /e2" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="e4_start_to_base_footprint" args="0 0 0 0 0 0 1 /e4_start /base_footprint" />
+</launch>
