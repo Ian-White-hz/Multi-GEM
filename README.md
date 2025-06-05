@@ -23,6 +23,11 @@ To run the GNSS tracker script:
 python3 src/vehicle_drivers/gem_gnss_control/scripts/gem_gnss_tracker_pp.py
 ```
 
+To run the ss control script:
+```sh
+python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
+```
+
 ## Directory Structure
 
 - `src/`: Source code for drivers, utilities, and launch files.
