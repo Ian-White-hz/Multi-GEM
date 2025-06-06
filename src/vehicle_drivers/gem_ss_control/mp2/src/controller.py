@@ -77,8 +77,8 @@ class MPCcontroller():
         self.lon_e2     = 0.0
         self.speed_e2   = 0.0
 
+        self.isorgi = True
         self.olat       = 40.0927
-   
         self.olon       = -88.2354
 
 
@@ -141,6 +141,10 @@ class MPCcontroller():
     def gnss_callback(self, msg):
         self.lat = round(msg.latitude, 6)
         self.lon = round(msg.longitude, 6)
+        if self.isorgi == True:
+            self.olat = self.lat
+            self.olon = self.lon
+            self.isorgi == False
 
     def ins_e2_callback(self, msg):
         self.heading_e2 = round(msg.heading, 6)
