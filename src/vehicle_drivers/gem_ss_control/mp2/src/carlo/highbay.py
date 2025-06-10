@@ -31,13 +31,15 @@ class HighwayWorld:
         # 1. Create ego car
         c1 = Car(Point(0, 0), 0, 'orange')
         c1.velocity = Point(0, 0)
+        c1.max_speed = 2
+        c1.min_speed = 0
    
         self.w.add(c1)
         self.cars.append(c1)
         # 2. Create other car(s)
-        c2 = Car(Point(10, 4), 0, 'blue')
+        c2 = Car(Point(-10, 2), 0, 'blue')
         c2.velocity = Point(0, 0)
-        c2.max_speed = 8
+        c2.max_speed = 2
         c2.min_speed = 0
         self.w.add(c2)
         self.cars.append(c2)

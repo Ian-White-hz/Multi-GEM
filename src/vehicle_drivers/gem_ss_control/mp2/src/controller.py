@@ -43,7 +43,7 @@ class MPCcontroller():
         # self.controlPube4 = rospy.Publisher("/e4/ackermann_cmd", AckermannDrive, queue_size=1)
         
         self.max_steering_angle = 0.78  # 45 degrees, adjust as needed
-        self.max_speed = 8
+        self.max_speed = 4
         self.world = HighwayWorld()     
         self.world.setup_world()
         self.world.init_car()
@@ -78,8 +78,10 @@ class MPCcontroller():
         self.speed_e2   = 0.0
 
         self.isorgi = True
-        self.olat       = 40.0927
-        self.olon       = -88.2354
+        # self.olat       = 40.092744
+        # self.olon       = -88.235454
+        self.olon = -88.236071
+        self.olat = 40.092747
 
 
         # read waypoints into the system 
@@ -136,15 +138,18 @@ class MPCcontroller():
         self.steer_cmd.angular_velocity_limit = 3.5 # radians/second
 
     def ins_callback(self, msg):
-        self.heading = round(msg.heading, 6)
+        self.heading = round(msg.heading,6)
 
     def gnss_callback(self, msg):
+        # print(self.olat)
+        # print(self.olon)
         self.lat = round(msg.latitude, 6)
         self.lon = round(msg.longitude, 6)
-        if self.isorgi == True:
-            self.olat = self.lat
-            self.olon = self.lon
-            self.isorgi == False
+        # if self.isorgi == True:
+        #     print("set original lat and lon")
+        #     self.olat = self.lat
+        #     self.olon = self.lon
+        #     self.isorgi == False
 
     def ins_e2_callback(self, msg):
         self.heading_e2 = round(msg.heading, 6)
@@ -163,12 +168,22 @@ class MPCcontroller():
     def enable_callback(self, msg):
         self.pacmod_enable = msg.data
 
+    # heading origin 90 (sensor)
     def heading_to_yaw(self, heading_curr):
         if (heading_curr >= 270 and heading_curr < 360):
             yaw_curr = np.radians(450 - heading_curr)
         else:
             yaw_curr = np.radians(90 - heading_curr)
         return yaw_curr
+    # 
+    
+    # heading origin 270 (sensor)
+    # def heading_to_yaw(self, heading_curr):
+    #     if (heading_curr >= 0 and heading_curr < 90):
+    #         yaw_curr = np.radians(-90 - heading_curr)
+    #     else:
+    #         yaw_curr = np.radians(270 - heading_curr)
+    #     return yaw_curr
 
     def front2steer(self, f_angle):
         if(f_angle > 35):
@@ -284,8 +299,8 @@ class MPCcontroller():
         self.speed = e4_vel
 
         # e2_x, e2_y, e2_vel, e2_yaw = self.get_gem_state_e2()
-        e2_x = 10
-        e2_y = 4
+        e2_x = -10
+        e2_y = 2
         e2_vel = 0.0
         e2_yaw = 0.0
         # print("e4_yaw", e4_yaw)

@@ -14,8 +14,8 @@ class MPC:
         self.human_actions = None
         self.control_inputs_r = np.array([0.0]*self.horizon*2)
         self.control_inputs_h = np.array([0.0]*self.horizon*2)
-        self.robot_const = LinearConstraint(np.eye(self.horizon*2), -100, 100)
-        self.human_const = LinearConstraint(np.eye(self.horizon*2), -100, 100)
+        self.robot_const = LinearConstraint(np.eye(self.horizon*2), -20, 20)
+        self.human_const = LinearConstraint(np.eye(self.horizon*2), -20, 20)
         self.dist_to_human = None
         self.block_human = None
         self.heading = None
@@ -39,12 +39,18 @@ class MPC:
         robot_car = self.agents[0]
         
         # Penalize current low speed
-        speed_penalty = max(0, 10 + robot_car.velocity.x)**2
+        # print("speed", robot_car.velocity)
+        speed_penalty = max(0, 4 - robot_car.velocity.x)**2
 
-        # print("robot car center:", robot_car.center.x, robot_car.center.y)
-        # print("robot car heading: ", robot_car.heading)
+        print("robot car center:", robot_car.center.x, robot_car.center.y)
+        print("robot car heading: ", robot_car.heading)
+
+        print(self.dist_to_human)
+        print(self.block_human)
+        print(self.heading)
+        print(speed_penalty)
         
-        return self.dist_to_human * 200 + self.block_human * 1000 + self.heading * 25 + speed_penalty * 10000
+        return self.dist_to_human * 500 + self.block_human * 50 + self.heading * 100 #+ speed_penalty * 500
         # return self.dist_to_human * 100 + self.block_human * 25 + self.heading * 150
 
     def human_cost(self, control_inputs_h):
@@ -64,7 +70,7 @@ class MPC:
             
             # self.heading += (np.mod(np.abs(robot_car.heading - 2*np.pi), 2*np.pi))**2
             self.heading += robot_car.heading**2
-            dist_to_robot += max([0, 300 - (robot_car.center - human_car.center).norm()])
+            dist_to_robot += max([0, 30 - (robot_car.center - human_car.center).norm()])
             speed_of_human += human_car.velocity.x**2
 
 
