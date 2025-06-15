@@ -186,10 +186,10 @@ class MPCcontroller():
     #     return yaw_curr
 
     def front2steer(self, f_angle):
-        if(f_angle > 35):
-            f_angle = 35
-        if (f_angle < -35):
-            f_angle = -35
+        if(f_angle > 45):
+            f_angle = 45
+        if (f_angle < -45):
+            f_angle = -45
         if (f_angle > 0):
             steer_angle = round(-0.1084*f_angle**2 + 21.775*f_angle, 2)
         elif (f_angle < 0):
@@ -298,11 +298,8 @@ class MPCcontroller():
         # print("e4_yaw", e4_yaw)
         self.speed = e4_vel
 
-        # e2_x, e2_y, e2_vel, e2_yaw = self.get_gem_state_e2()
-        e2_x = -10
-        e2_y = 2
-        e2_vel = 0.0
-        e2_yaw = 0.0
+        e2_x, e2_y, e2_vel, e2_yaw = self.get_gem_state_e2()
+        # print("e2:",e2_x,e2_y,e2_vel,e2_yaw)
         # print("e4_yaw", e4_yaw)
 
         # Update ego and other vehicle states
@@ -321,22 +318,42 @@ class MPCcontroller():
         current_state = {'ego': ego, 'others': [other]}
        
         # Call your MPC policy
-        steering, acceleration = self.world.mpc_highway_policy(current_state)
-        # print("steering", steering)
+        heading, acceleration = self.world.mpc_highway_policy(current_state)
+        print("heading", heading)
         
        
+        # heading to yaw
+        alpha = heading - e4_yaw
+
+        # ----------------- tuning this part as needed -----------------
+        k       = 0.41 
+        L       = 10
+        angle_i = math.atan((k * 2 * self.wheelbase * math.sin(alpha)) / L) 
+        angle   = angle_i*2
+        # ----------------- tuning this part as needed -----------------
+
+        f_delta = round(np.clip(angle, -0.61, 0.61), 3)
+
+        f_delta_deg = np.degrees(f_delta)
+
+        # steering_angle in degrees
+        print("f_delta_deg", f_delta_deg)
+
+        steering = self.front2steer(f_delta_deg)
+        print("steering", steering)
+        
         # Clip to vehicle limits
-        steering = max(min(steering, self.max_steering_angle), -self.max_steering_angle)
+        # steering = max(min(steering, self.max_steering_angle), -self.max_steering_angle)
         acceleration = max(min(acceleration, self.max_accel), -self.max_accel)
+        
         print("acceleration", acceleration)
         return steering, acceleration
     
     def execute_e4(self):
         steering, acceleration = self.mpc_controller()
-        print("steering", steering)
         self.turn_cmd.ui16_cmd = 1
         self.accel_cmd.f64_cmd = acceleration
-        self.steer_cmd.angular_position = steering  # Convert steering angle to radians
+        self.steer_cmd.angular_position = np.radians(steering)  # Convert steering angle to radians
         self.accel_pub.publish(self.accel_cmd)
         self.steer_pub.publish(self.steer_cmd)
         self.turn_pub.publish(self.turn_cmd)

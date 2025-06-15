@@ -65,7 +65,7 @@ class Entity:
         new_velocity = Point(new_speed * np.cos(received_heading), new_speed * np.sin(received_heading))
 
 
-        self.center = new_center
+        self.center = received_center
         # self.heading =  (np.mod(np.abs(received_heading) - 2*np.pi, 2*np.pi)) #
         self.heading = received_heading
         self.velocity = new_velocity

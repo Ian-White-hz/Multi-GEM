@@ -42,21 +42,25 @@ class MPC:
         # print("speed", robot_car.velocity)
         speed_penalty = max(0, 4 - robot_car.velocity.x)**2
 
-        print("robot car center:", robot_car.center.x, robot_car.center.y)
-        print("robot car heading: ", robot_car.heading)
-
-        print(self.dist_to_human)
-        print(self.block_human)
-        print(self.heading)
-        print(speed_penalty)
         
-        return self.dist_to_human * 500 + self.block_human * 50 + self.heading * 100 #+ speed_penalty * 500
+        # print("robot car heading: ", robot_car.heading)
+
+        # print(self.dist_to_human)
+        # print(self.block_human)
+        # print(self.heading)
+        # print(speed_penalty)
+        
+        return self.dist_to_human * 500 + self.block_human * 50 + self.heading * 160 #+ speed_penalty * 500
         # return self.dist_to_human * 100 + self.block_human * 25 + self.heading * 150
 
     def human_cost(self, control_inputs_h):
         self.human_actions = control_inputs_h.reshape(self.horizon, 2)
         robot_car = self.agents[0]
         human_car = self.agents[1]
+
+        # print("robot car center:", robot_car.center.x, robot_car.center.y, robot_car.heading)  
+        # print("human car center:", human_car.center.x, human_car.center.y, human_car.heading)
+
         self.dist_to_human = 0
         self.block_human = 0
         self.heading = 0
