@@ -11,6 +11,16 @@ GEM is a robotics platform integrating multiple sensors and drivers for autonomo
 [Online documentation](https://gemstack.readthedocs.org) 
 [About the GEM e2 vehicle](https://publish.illinois.edu/robotics-autonomy-resources/gem/)
 
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=ePmhrkKGKno">
+    <img src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" 
+         alt="视频标题" 
+         style="width:60%;">
+  </a>
+  <p><em>点击上方图片观看视频</em></p>
+</div>
+
+
 ## Dependencies
 GEMstack uses **Python 3.7+** and **ROS Noetic**.  
 (It is possible to do some offline and simulation work without ROS, but it is highly recommended to install it if you are working on any onboard behavior or training for rosbag files.)
