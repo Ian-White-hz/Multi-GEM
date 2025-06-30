@@ -64,21 +64,21 @@ Please pay attention to MAIN ****
         │   └── waypoints
         ├── gem_ss_control
         │   ├── actor_collision
-        │   ├── carlo               #  ← SUPPORT MAIN on-vehicle MPC
+        │   ├── carlo   --------------------------  #  ← SUPPORT MAIN on-vehicle MPC
                 ├── agents.py
                 ├── archive
                 ├── block1_bash.sh
                 ├── block2_bash.sh
                 ├── block3_bash.sh
                 ├── block4_bash.sh
-                ├── entities.py     #  ← MAIN MPC VEHICLE MODEL
+                ├── entities.py  ------------------ #  ← MAIN MPC VEHICLE MODEL
                 ├── geometry.py
                 ├── graphics.py
-                ├── highbay.py      #  ← MAIN MPC POLICY
+                ├── highbay.py   ------------------ #  ← MAIN MPC POLICY
                 ├── highway.py
                 ├── interactive_controllers.py
                 ├── intersection.py
-                ├── mpc_highway.py  #  ← MAIN MPC COST FUNCTION
+                ├── mpc_highway.py  --------------- #  ← MAIN MPC COST FUNCTION
                 ├── mpc_intersection.py
                 ├── mpc_roundabout.py
                 ├── pkl_to_csv_converter.py
@@ -96,7 +96,7 @@ Please pay attention to MAIN ****
         │   ├── gem_simulator
         │   ├── mp2
             │   ├── launch
-                    ├── highbay.launch              # ← MAIN Launch file
+                    ├── highbay.launch  ------------ # ← MAIN Launch file
                     ├── mp2.launch
                     ├── map.launch
             │   ├── src
@@ -106,7 +106,7 @@ Please pay attention to MAIN ****
                     ├── __pycache__
                     ├── carlo
                     ├── choose_PCL2.py
-                    ├── controller.py                # ← MAIN MPC CONTROLLER
+                    ├── controller.py  ------------  # ← MAIN MPC CONTROLLER
                     ├── dGPS_plot.py
                     ├── dgps_dlidar_plot_2.py
                     ├── gps_debug_2.py
