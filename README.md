@@ -4,8 +4,59 @@
 
 GEM is a robotics platform integrating multiple sensors and drivers for autonomous vehicle research and development. This workspace includes ROS packages and utilities for GNSS, LiDAR, radar, and vehicle control.
 
-## Main Topics
+# GEMstack: software for Towards Robots that Influence Humans over Long-Term Interaction
 
+[Original paper](https://ieeexplore.ieee.org/abstract/document/10160321)
+
+[Online documentation](https://gemstack.readthedocs.org) 
+[About the GEM e2 vehicle](https://publish.illinois.edu/robotics-autonomy-resources/gem/)
+
+## Demo
+[![Demo Video](https://img.youtube.com/vi/ePmhrkKGKno/0.jpg)](https://www.youtube.com/watch?v=ePmhrkKGKno)
+
+## Dependencies
+GEMstack uses **Python 3.7+** and **ROS Noetic**.  
+(It is possible to do some offline and simulation work without ROS, but it is highly recommended to install it if you are working on any onboard behavior or training for rosbag files.)
+
+
+## 📂 Directory layout
+Please pay attention to MAIN ****
+```text
+.
+
+├── results/                   # Generated figures / plots
+│
+├── rosbags/                   # Data capture & analysis tools
+│
+├── src/                       # ROS catkin workspace (Noetic)
+│   ├── CMakeLists.txt → /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
+│   ├── basic_launch/          # Launch files for quick testing
+│   ├── hardware_drivers/      # Low-level CAN / PACMod / sensor nodes
+│   ├── readme.txt
+│   ├── utility/               # Generic ROS utilities (tf, loggers…)
+│   └── vehicle_drivers/       # GEM-specific high-level drivers
+|        ├── gem_gnss_control
+        ├── gem_ss_control
+        │   ├── actor_collision
+        │   ├── carlo   --------------------------  #  ← SUPPORT MAIN on-vehicle MPC
+                ├── agents.py
+                ├── entities.py  ------------------ #  ← MAIN MPC VEHICLE MODEL
+                ├── geometry.py
+                ├── graphics.py
+                ├── highbay.py   ------------------ #  ← MAIN MPC POLICY
+                ├── highway.py
+                ├── interactive_controllers.py
+                ├── intersection.py
+                ├── mpc_highway.py  --------------- #  ← MAIN MPC COST FUNCTION
+                ├── mpc_intersection.py
+                ├── mpc_roundabout.py
+                ├── pkl_to_csv_converter.py
+                └── world.py
+        │   ├── notebooks
+        │   └── velodyne_simulator 
+        └── gem_visualization
+```
+## Main Topics
 The following ROS topics are commonly used in this workspace:
 - `/livox/lidar`
 - `/e2/septentrio_gnss/insnavgeod`
@@ -41,8 +92,6 @@ python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 1. Initialize and configure your catkin workspace:
     ```sh
     cd ~/GEM
-    catkin init
-    catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
     ```
 2. Build the workspace:
     ```sh
