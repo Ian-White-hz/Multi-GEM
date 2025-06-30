@@ -17,7 +17,7 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
 
 
 ## 📂 Directory layout
-
+Please pay attention to MAIN ****
 ```text
 .
 ├── Gem_e4/                    # Core Python simulation & control code
@@ -64,7 +64,7 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
         │   └── waypoints
         ├── gem_ss_control
         │   ├── actor_collision
-        │   ├── carlo               # ← SUPPORT MAIN on-vehicle MPC
+        │   ├── carlo               #  ← SUPPORT MAIN on-vehicle MPC
                 ├── agents.py
                 ├── archive
                 ├── block1_bash.sh
@@ -78,7 +78,7 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
                 ├── highway.py
                 ├── interactive_controllers.py
                 ├── intersection.py
-                ├── mpc_highway.py  # ← MAIN MPC COST FUNCTION
+                ├── mpc_highway.py  #  ← MAIN MPC COST FUNCTION
                 ├── mpc_intersection.py
                 ├── mpc_roundabout.py
                 ├── pkl_to_csv_converter.py
@@ -95,6 +95,10 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
 
         │   ├── gem_simulator
         │   ├── mp2
+            │   ├── launch
+                    ├── highbay.launch              # ← MAIN Launch file
+                    ├── mp2.launch
+                    ├── map.launch
             │   ├── src
                     ├── Data
                     ├── GPS_coord_plot.py
@@ -102,7 +106,7 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
                     ├── __pycache__
                     ├── carlo
                     ├── choose_PCL2.py
-                    ├── controller.py
+                    ├── controller.py                # ← MAIN MPC CONTROLLER
                     ├── dGPS_plot.py
                     ├── dgps_dlidar_plot_2.py
                     ├── gps_debug_2.py
