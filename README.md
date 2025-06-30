@@ -37,11 +37,6 @@ Please pay attention to MAIN ****
         │   ├── actor_collision
         │   ├── carlo   --------------------------  #  ← SUPPORT MAIN on-vehicle MPC
                 ├── agents.py
-                ├── archive
-                ├── block1_bash.sh
-                ├── block2_bash.sh
-                ├── block3_bash.sh
-                ├── block4_bash.sh
                 ├── entities.py  ------------------ #  ← MAIN MPC VEHICLE MODEL
                 ├── geometry.py
                 ├── graphics.py
@@ -53,28 +48,10 @@ Please pay attention to MAIN ****
                 ├── mpc_intersection.py
                 ├── mpc_roundabout.py
                 ├── pkl_to_csv_converter.py
-                ├── pract_bash.sh
-                ├── pract_block.py
-                ├── pract_highway.py
-                ├── pract_intersection.py
-                ├── pract_roundabout.py
-                ├── roundabout.py
-                ├── timer_gui.py
-                ├── utils.py
-                ├── visualizer.py
                 └── world.py
         │   ├── notebooks
         │   └── velodyne_simulator 
         └── gem_visualization
-            ├── README.md
-            ├── gem_e4_description
-            ├── gem_gnss_image
-            └── gem_rviz_markers
-│
-└── stackelberg/               # Influence-game experiments (ICRA paper)
-    ├── README.md
-    └── icra_influence/
-
 ```
 ## Main Topics
 The following ROS topics are commonly used in this workspace:
@@ -111,8 +88,6 @@ python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 1. Initialize and configure your catkin workspace:
     ```sh
     cd ~/GEM
-    catkin init
-    catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
     ```
 2. Build the workspace:
     ```sh
