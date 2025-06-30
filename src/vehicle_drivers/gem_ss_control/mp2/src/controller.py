@@ -291,15 +291,16 @@ class MPCcontroller():
         # Extract state for MPC
         # Extract vehicle states using helper function
         e4_x, e4_y, e4_vel, e4_yaw = self.get_gem_state_e4()
-        # print("_____________________")
-        # print("e4_vel", e4_vel)
-        # print("e4_x", e4_x)
-        # print("e4_y", e4_y)
-        # print("e4_yaw", e4_yaw)
+        print("_____________________")
+        print("e4_vel", e4_vel)
+        print("e4_x", e4_x)
+        print("e4_y", e4_y)
+        print("e4_yaw", e4_yaw)
         self.speed = e4_vel
 
         e2_x, e2_y, e2_vel, e2_yaw = self.get_gem_state_e2()
-        # print("e2:",e2_x,e2_y,e2_vel,e2_yaw)
+        # e2_x, e2_y, e2_vel, e2_yaw = -4 , 3, 0, 0 
+        print("e2:",e2_x,e2_y,e2_vel,e2_yaw)
         # print("e4_yaw", e4_yaw)
 
         # Update ego and other vehicle states

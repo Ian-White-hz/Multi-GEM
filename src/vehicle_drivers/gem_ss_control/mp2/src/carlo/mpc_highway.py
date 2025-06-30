@@ -49,8 +49,8 @@ class MPC:
         # print(self.block_human)
         # print(self.heading)
         # print(speed_penalty)
-        
-        return self.dist_to_human * 500 + self.block_human * 50 + self.heading * 160 #+ speed_penalty * 500
+         
+        return self.dist_to_human * 400 + self.block_human * 50 + self.heading * 160 #+ speed_penalty * 500
         # return self.dist_to_human * 100 + self.block_human * 25 + self.heading * 150
 
     def human_cost(self, control_inputs_h):
@@ -68,7 +68,7 @@ class MPC:
         speed_of_human = 0
         # print("human car center", human_car.center.x, human_car.center.y)
         for idx in range(self.horizon):
-            self.dist_to_human += max([0, 100 - (robot_car.center - human_car.center).norm()])
+            self.dist_to_human += max([0, 50 - (robot_car.center - human_car.center).norm()])
             self.block_human += (human_car.center.y - robot_car.center.y)**2
             
             

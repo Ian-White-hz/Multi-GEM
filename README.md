@@ -15,6 +15,7 @@ The following ROS topics are commonly used in this workspace:
 - `/ouster/scan`
 - `/tf`
 - `/tf_static`
+ rosbag record /e2/septentrio_gnss/insnavgeod /e2/septentrio_gnss/navsatfix /septentrio_gnss/insnavgeod /septentrio_gnss/navsatfix
 
 ## Quick Start
 
