@@ -20,34 +20,10 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
 Please pay attention to MAIN ****
 ```text
 .
-├── Gem_e4/                    # Core Python simulation & control code
-│   ├── GNSS_msg.py            # Septentrio → ROS GNSS message helpers
-│   ├── agents.py              # Robot & human vehicle agent classes
-│   ├── entities.py            # Common geometry entities (cones, lanes…)
-│   ├── geometry.py            # 2-D/3-D geometry utilities
-│   ├── graphics.py            # Matplotlib/Klampt drawing helpers
-│   ├── interactive_controllers.py
-│   ├── real_world.py          # On-vehicle pipeline (pure pursuit)
-│   ├── real_world_mpc.py      # On-vehicle pipeline (MPC tracker)
-│   ├── tracker_pp.py          # Pure-pursuit tracker module
-│   ├── utils.py               # Misc helpers (timing, logging…)
-│   ├── visualizer.py          # Live scenario visualisation
-│   └── world.py               # Scenario & environment container
-│
+
 ├── results/                   # Generated figures / plots
-│   ├── output_ag1.png
-│   ├── output_ag1_a.png
-│   └── output_ag1_a_RTK.png
 │
 ├── rosbags/                   # Data capture & analysis tools
-│   ├── ag1_a_RTK/             # Unpacked bag (rosbag → csv)
-│   ├── ag1_a_RTK.bag
-│   ├── ag1_a_RTK.csv
-│   ├── ag1_a_RTK_1/
-│   ├── ag1_a_RTK_1.bag
-│   ├── ag1_a_RTK_1.csv
-│   ├── rosbag2csv.py          # Helper script
-│   └── vis_waypoints.ipynb    # Jupyter visualisation notebook
 │
 ├── src/                       # ROS catkin workspace (Noetic)
 │   ├── CMakeLists.txt → /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
@@ -57,11 +33,6 @@ Please pay attention to MAIN ****
 │   ├── utility/               # Generic ROS utilities (tf, loggers…)
 │   └── vehicle_drivers/       # GEM-specific high-level drivers
 |        ├── gem_gnss_control
-        │   ├── CMakeLists.txt
-        │   ├── LICENSE
-        │   ├── package.xml
-        │   ├── scripts
-        │   └── waypoints
         ├── gem_ss_control
         │   ├── actor_collision
         │   ├── carlo   --------------------------  #  ← SUPPORT MAIN on-vehicle MPC
@@ -92,37 +63,6 @@ Please pay attention to MAIN ****
                 ├── utils.py
                 ├── visualizer.py
                 └── world.py
-
-        │   ├── gem_simulator
-        │   ├── mp2
-            │   ├── launch
-                    ├── highbay.launch  ------------ # ← MAIN Launch file
-                    ├── mp2.launch
-                    ├── map.launch
-            │   ├── src
-                    ├── Data
-                    ├── GPS_coord_plot.py
-                    ├── __init__.py
-                    ├── __pycache__
-                    ├── carlo
-                    ├── choose_PCL2.py
-                    ├── controller.py  ------------  # ← MAIN MPC CONTROLLER
-                    ├── dGPS_plot.py
-                    ├── dgps_dlidar_plot_2.py
-                    ├── gps_debug_2.py
-                    ├── lidar_debug.py
-                    ├── main.py
-                    ├── main_highbay.py
-                    ├── main_highbay_keyboard.py
-                    ├── main_highbay_mpc.py
-                    ├── main_highbay_steering.py
-                    ├── main_highbay_steering_mpc.py  # ← MAIN on-vehicle MPC
-                    ├── respawn.py
-                    ├── set_pos.py
-                    ├── traj_plot.py
-                    ├── util.py
-                    ├── velocity_plot.py
-                    └── waypoint_list.py
         │   ├── notebooks
         │   └── velodyne_simulator 
         └── gem_visualization
