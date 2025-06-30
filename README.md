@@ -64,21 +64,21 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
         │   └── waypoints
         ├── gem_ss_control
         │   ├── actor_collision
-        │   ├── carlo    # ← SUPPORT MAIN on-vehicle MPC
+        │   ├── carlo               # ← SUPPORT MAIN on-vehicle MPC
                 ├── agents.py
                 ├── archive
                 ├── block1_bash.sh
                 ├── block2_bash.sh
                 ├── block3_bash.sh
                 ├── block4_bash.sh
-                ├── entities.py
+                ├── entities.py     #  ← MAIN MPC VEHICLE MODEL
                 ├── geometry.py
                 ├── graphics.py
-                ├── highbay.py
+                ├── highbay.py      #  ← MAIN MPC POLICY
                 ├── highway.py
                 ├── interactive_controllers.py
                 ├── intersection.py
-                ├── mpc_highway.py
+                ├── mpc_highway.py  # ← MAIN MPC COST FUNCTION
                 ├── mpc_intersection.py
                 ├── mpc_roundabout.py
                 ├── pkl_to_csv_converter.py
