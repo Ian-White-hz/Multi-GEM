@@ -8,11 +8,11 @@ MAIN IDEA:
 
 we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
 
-        1.Alignment of all units as meter
+   1.Alignment of all units as meter
         
-        2.different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
+   2.different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
         
-        3.alignment between ros update rate and ros communication delay.
+   3.alignment between ros update rate and ros communication delay.
         
 After all, ackermn cmd control gas pedal and steering wheel (radians).
 
