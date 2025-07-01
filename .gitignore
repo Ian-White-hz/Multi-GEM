@@ -2,5 +2,7 @@
 /build
 # /src/hardware_drivers/ouster-ros
 /GEM/stackelberg
-/GEM/Gem_e4/__pycache__
+# /GEM/Gem_e4/__pycache__
 /GEM/rosbags
+/GEM/Gem_e4
+/GEM/results
