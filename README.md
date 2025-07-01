@@ -4,10 +4,16 @@
 
 GEM is a robotics platform integrating multiple sensors and drivers for autonomous vehicle research and development. This workspace includes ROS packages and utilities for GNSS, LiDAR, radar, and vehicle control.
 
-MAIN IDEA: we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
+MAIN IDEA: 
+
+we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
+
         1.Alignment of all units as meter
+        
         2.different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
+        
         3.alignment between ros update rate and ros communication delay.
+        
 After all, ackermn cmd control gas pedal and steering wheel (radians).
 
 # GEMstack: software for Towards Robots that Influence Humans over Long-Term Interaction
