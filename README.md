@@ -3,32 +3,25 @@
 ## Overview
 
 Multi-GEM is a modular framework for research and development with multiple GEM autonomous vehicles, with a special focus on game-theoretic approaches to multi-agent coordination and control. It provides tools, controllers, and utilities for experimenting with and deploying advanced strategies—including those based on game theory—in scenarios involving multiple GEM vehicles, both in simulation and on real hardware.
+
 The framework supports a variety of driving environments—including highways, intersections, and roundabouts—and enables the integration of both classical and advanced control strategies such as Model Predictive Control (MPC) and game-theoretic decision making. Multi-GEM is designed to facilitate rapid prototyping, testing, and deployment of multi-vehicle algorithms, making it ideal for academic research, education, and real-world experimentation.
 Key features include:
-Support for multi-agent coordination and control using game-theoretic and classical methods
-Ready-to-use modules for common driving scenarios
-Integration with ROS and Gazebo for seamless simulation and real-vehicle interfacing
-Extensible architecture for custom controllers and environments
-Utilities for data logging, visualization, and analysis
+
+- Support for multi-agent coordination and control using game-theoretic and classical methods
+- Ready-to-use modules for common driving scenarios
+- Integration with ROS and Gazebo for seamless simulation and real-vehicle interfacing
+- Extensible architecture for custom controllers and environments
+- Utilities for data logging, visualization, and analysis
+
 Whether you are developing new game-theoretic control algorithms, testing cooperative driving strategies, or deploying on real GEM vehicles, Multi-GEM provides a robust foundation for your work.
 
-### MAIN IDEA: 
 
-we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
 
-   1.Alignment of all units as meter
-        
-   2.different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
-        
-   3.alignment between ros update rate and ros communication delay.
-        
-After all, ackermn cmd control gas pedal and steering wheel (radians).
-
-# GEMstack: software for Towards Robots that Influence Humans over Long-Term Interaction
-
+# Related Works
+### Towards Robots that Influence Humans over Long-Term Interaction
+**Authors.** Conference/Journal, Year.
 [Original paper](https://ieeexplore.ieee.org/abstract/document/10160321)
-[Online documentation](https://gemstack.readthedocs.org) 
-[About the GEM e2 vehicle](https://publish.illinois.edu/robotics-autonomy-resources/gem/)
+
 
 ## Demo
 [![Demo Video](https://img.youtube.com/vi/ePmhrkKGKno/0.jpg)](https://www.youtube.com/watch?v=ePmhrkKGKno)
@@ -74,18 +67,17 @@ Please pay attention to MAIN ****
         │   └── velodyne_simulator # simulator support
         └── gem_visualization      # simulator support
 ```
-## Main Topics
-The following ROS topics are commonly used in this workspace:
-- `/livox/lidar`
-- `/e2/septentrio_gnss/insnavgeod`
-- `/e2/septentrio_gnss/navsatfix`
-- `/septentrio_gnss/insnavgeod`
-- `/ouster/points`
-- `/ouster/scan`
-- `/tf`
-- `/tf_static`
+### MAIN IDEA: 
 
- rosbag record /e2/septentrio_gnss/insnavgeod /e2/septentrio_gnss/navsatfix /septentrio_gnss/insnavgeod /septentrio_gnss/navsatfix
+we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
+
+- Alignment of all units as meter
+        
+- different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
+        
+- alignment between ros update rate and ros communication delay.
+        
+After all, ackermn cmd control gas pedal and steering wheel (radians).
 
 ## Quick Start
 
@@ -131,7 +123,8 @@ roslaunch basic_launch dbw_joystick.launch
 ```
 
 ## Documentation
-
+[Online documentation](https://gemstack.readthedocs.org) 
+[About the GEM e2 vehicle](https://publish.illinois.edu/robotics-autonomy-resources/gem/)
 - See [src/readme.txt](src/readme.txt) for more launch and usage examples.
 - Refer to each package's README for specific instructions.
 
