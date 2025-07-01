@@ -1,10 +1,18 @@
-# GEM
+# Multi-GEM: A multi-agent control and coordination framework for GEM vehicles
 
 ## Overview
 
-GEM is a robotics platform integrating multiple sensors and drivers for autonomous vehicle research and development. This workspace includes ROS packages and utilities for GNSS, LiDAR, radar, and vehicle control.
+Multi-GEM is a modular framework for research and development with multiple GEM autonomous vehicles, with a special focus on game-theoretic approaches to multi-agent coordination and control. It provides tools, controllers, and utilities for experimenting with and deploying advanced strategies—including those based on game theory—in scenarios involving multiple GEM vehicles, both in simulation and on real hardware.
+The framework supports a variety of driving environments—including highways, intersections, and roundabouts—and enables the integration of both classical and advanced control strategies such as Model Predictive Control (MPC) and game-theoretic decision making. Multi-GEM is designed to facilitate rapid prototyping, testing, and deployment of multi-vehicle algorithms, making it ideal for academic research, education, and real-world experimentation.
+Key features include:
+Support for multi-agent coordination and control using game-theoretic and classical methods
+Ready-to-use modules for common driving scenarios
+Integration with ROS and Gazebo for seamless simulation and real-vehicle interfacing
+Extensible architecture for custom controllers and environments
+Utilities for data logging, visualization, and analysis
+Whether you are developing new game-theoretic control algorithms, testing cooperative driving strategies, or deploying on real GEM vehicles, Multi-GEM provides a robust foundation for your work.
 
-MAIN IDEA: 
+### MAIN IDEA: 
 
 we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
 
