@@ -36,8 +36,8 @@ Please pay attention to MAIN ****
 ### Legend
 
 - 🟥 **TODO**
-- 🟧 **early development** (usable but to be tuned)
-- 🟨 **in development** (usable, but many features not complete or tested)
+- 🟧 **early development** (usable, but many features not complete or tested)
+- 🟨 **in development** (usable but to be tuned)
 - 🟩 **stable** (most features complete and tested)
 - 🟦 **mature**
 
@@ -58,11 +58,11 @@ Please pay attention to MAIN ****
                 ├── carlo                ------------------ 🟨  ← MAIN MPC VEHICLE MODEL FUNCTIONS
                         ├── entities.py  ------------------ 🟨  ← MAIN MPC VEHICLE KINEMATIC MODEL
                         ├── highbay.py   ------------------ 🟩  ← MAIN MPC POLICY API
-                        ├── mpc_highway.py  --------------- 🟧  ← MAIN MPC COST FUNCTION
+                        ├── mpc_highway.py  --------------- 🟨  ← MAIN MPC COST FUNCTION
                         ├── agents.py    ------------------ 🟩  ← MAIN IMAGINARY CAR CLASSES
                         ├── world.py     ------------------ 🟩  ← MAIN IMAGINARY CARLO WORLD
-                ├── main_highbay_steering_mpc.py ---------- 🟨  ← MAIN MPC RUN FILE
-                ├── controller.py        ------------------ 🟨  ← MAIN MPC CLASS
+                ├── main_highbay_steering_mpc.py ---------- 🟧  ← MAIN MPC RUN FILE
+                ├── controller.py        ------------------ 🟧  ← MAIN MPC CLASS
         │   ├── notebooks
         │   └── velodyne_simulator # simulator support
         └── gem_visualization      # simulator support
@@ -71,11 +71,13 @@ Please pay attention to MAIN ****
 
 we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
 
+- GEM_e4 as autonomous vehicle with inertial frame (0,0), GEM_e2 as human driver.
+
 - Alignment of all units as meter
         
-- different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
+- Alignment of different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
         
-- alignment between ros update rate and ros communication delay.
+- Alignment between ros update rate and ros communication delay.
         
 After all, ackermn cmd control gas pedal and steering wheel (radians).
 
