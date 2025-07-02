@@ -87,14 +87,9 @@ class MPCcontroller():
         # read waypoints into the system 
         self.goal       = 0          
 
-        # self.desired_speed = 1.5  # m/s, reference speed
-        # self.max_accel     = 0.5 # % of acceleration
-        # self.pid_speed     = PID(0.5, 0.0, 0.1, wg=20)
-
         self.desired_speed = 2  # m/s, reference speed
         self.max_accel     = 0.4 # % of acceleration
-        # self.pid_speed     = PID(0.2, 0.2, 0.0, wg=20)
-        # self.speed_filter  = OnlineFilter(1.2, 30, 4)
+
 
 
         # -------------------- PACMod setup --------------------
@@ -261,31 +256,6 @@ class MPCcontroller():
     def dist(self, p1, p2):
         return round(np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2), 3)
 
-    # def getModelState2(self):
-    #     rospy.wait_for_service('/gazebo/get_model_state')
-    #     try:
-    #         serviceResponse = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
-    #         resp = serviceResponse(model_name='gem_e4')
-    #     except rospy.ServiceException as exc:
-    #         rospy.loginfo("Service did not process request: "+str(exc))
-    #         resp = GetModelStateResponse()
-    #         resp.success = False
-    #     return resp
-
-    # def extract_vehicle_info(self, currentPose):
-
-    #     pos_x, pos_y, vel, yaw = 0, 0, 0, 0
-    #     pos_x = currentPose.pose.position.x
-    #     pos_y = currentPose.pose.position.y
-    #     # find velocity from x and y components
-    #     # rospy.loginfo(f"Current speed: {self.speed}")
-    #     # rospy.loginfo(f"Velocity components - x: {currentPose.twist.linear.x}, y: {currentPose.twist.linear.y}")
-    #     vel = math.sqrt(currentPose.twist.linear.x ** 2 + currentPose.twist.linear.y ** 2)
-    #     # rospy.loginfo(f"Calculated velocity magnitude: {vel}")
-    #     roll_pitch_yaw = quaternion_to_euler(currentPose.pose.orientation.x, currentPose.pose.orientation.y, currentPose.pose.orientation.z, currentPose.pose.orientation.w)
-    #     yaw = roll_pitch_yaw[2]
-
-    #     return pos_x, pos_y, vel, yaw # note that yaw is in radian
 
     def mpc_controller(self):
         # Extract state for MPC
@@ -301,7 +271,6 @@ class MPCcontroller():
         e2_x, e2_y, e2_vel, e2_yaw = self.get_gem_state_e2()
         # e2_x, e2_y, e2_vel, e2_yaw = -4 , 3, 0, 0 
         print("e2:",e2_x,e2_y,e2_vel,e2_yaw)
-        # print("e4_yaw", e4_yaw)
 
         # Update ego and other vehicle states
         ego = {

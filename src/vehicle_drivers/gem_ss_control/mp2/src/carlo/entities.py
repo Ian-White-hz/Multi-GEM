@@ -45,28 +45,17 @@ class Entity:
     def update(self, dt: float, current_state): 
         # Update the entity's state based on the current state
         # This is a placeholder function and should be implemented in subclasses
-        # print(current_state)
         received_center = Point(float(current_state['x']),float(current_state['y']))
         received_heading = float(current_state['heading'])
         received_speed = float(current_state['speed'])
-        
-        # print("speed", speed)
-        # heading = self.heading
-        lr = self.rear_dist
-        lf = lr # we assume the center of mass is the same as the geometric center of the entity
-        beta = np.arctan(lr / (lf + lr) * np.tan(self.inputSteering))
 
         new_angular_velocity = received_speed * self.inputSteering # this is not needed and used for this model, but let's keep it for consistency (and to avoid if-else statements)
         new_acceleration = self.inputAcceleration 
         new_speed = np.clip(received_speed + new_acceleration * dt, self.min_speed, self.max_speed)
-        # new_heading = received_heading + ((received_speed + new_speed)/lr)*np.sin(beta)*dt/2.
-        angle = (received_heading + received_heading)/2. + beta
-        new_center = received_center + (received_speed + new_speed)*Point(np.cos(angle), np.sin(angle))*dt / 2.
         new_velocity = Point(new_speed * np.cos(received_heading), new_speed * np.sin(received_heading))
 
 
         self.center = received_center
-        # self.heading =  (np.mod(np.abs(received_heading) - 2*np.pi, 2*np.pi)) #
         self.heading = received_heading
         self.velocity = new_velocity
         self.acceleration = new_acceleration
@@ -78,9 +67,6 @@ class Entity:
         if self.movable:
             speed = self.speed
             heading = self.heading
-
-            
-
             # Kinematic bicycle model dynamics based on
             # "Kinematic and Dynamic Vehicle Models for Autonomous Driving Control Design" by
             # Jason Kong, Mark Pfeiffer, Georg Schildbach, Francesco Borrelli
@@ -96,31 +82,8 @@ class Entity:
             new_center = self.center + (speed + new_speed)*Point(np.cos(angle), np.sin(angle))*dt / 2.
             new_velocity = Point(new_speed * np.cos(new_heading), new_speed * np.sin(new_heading))
 
-
-            
-
-            
-            # Point-mass dynamics based on
-            # "Active Preference-Based Learning of Reward Functions" by
-            # Dorsa Sadigh, Anca D. Dragan, S. Shankar Sastry, Sanjit A. Seshia
-
-            # new_angular_velocity = speed * self.inputSteering
-            # new_acceleration = self.inputAcceleration - self.friction * speed
-
-            # new_heading = heading + (self.angular_velocity + new_angular_velocity) * dt / 2.
-            # new_speed = np.clip(speed + (self.acceleration + new_acceleration) * dt / 2., self.min_speed, self.max_speed)
-
-            # new_velocity = Point(((speed + new_speed) / 2.) * np.cos((new_heading + heading) / 2.),
-            #                         ((speed + new_speed) / 2.) * np.sin((new_heading + heading) / 2.))
-
-            # new_center = self.center + (self.velocity + new_velocity) * dt / 2.
-
-           
-
-
             self.center = new_center
-            # self.heading = (np.mod(2*np.pi - np.abs(new_heading), 2*np.pi))
-            self.heading = new_heading # wrap the heading angle between 0 and +2pi
+            self.heading = new_heading
             self.velocity = new_velocity
             self.acceleration = new_acceleration
             self.angular_velocity = new_angular_velocity

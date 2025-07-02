@@ -1,15 +1,27 @@
-# GEM
+# Multi-GEM: A multi-agent control and coordination framework for GEM vehicles
 
 ## Overview
 
-GEM is a robotics platform integrating multiple sensors and drivers for autonomous vehicle research and development. This workspace includes ROS packages and utilities for GNSS, LiDAR, radar, and vehicle control.
+Multi-GEM is a modular framework for research and development with multiple GEM autonomous vehicles, with a special focus on game-theoretic approaches to multi-agent coordination and control. It provides tools, controllers, and utilities for experimenting with and deploying advanced strategies—including those based on game theory—in scenarios involving multiple GEM vehicles, both in simulation and on real hardware.
 
-# GEMstack: software for Towards Robots that Influence Humans over Long-Term Interaction
+The framework supports a variety of driving environments—including highways, intersections, and roundabouts—and enables the integration of both classical and advanced control strategies such as Model Predictive Control (MPC) and game-theoretic decision making. Multi-GEM is designed to facilitate rapid prototyping, testing, and deployment of multi-vehicle algorithms, making it ideal for academic research, education, and real-world experimentation.
+Key features include:
 
+- Support for multi-agent coordination and control using game-theoretic and classical methods
+- Ready-to-use modules for common driving scenarios
+- Integration with ROS and Gazebo for seamless simulation and real-vehicle interfacing
+- Extensible architecture for custom controllers and environments
+- Utilities for data logging, visualization, and analysis
+
+Whether you are developing new game-theoretic control algorithms, testing cooperative driving strategies, or deploying on real GEM vehicles, Multi-GEM provides a robust foundation for your work.
+
+
+
+# Related Works
+### Towards Robots that Influence Humans over Long-Term Interaction
+**Authors.** Conference/Journal, Year.
 [Original paper](https://ieeexplore.ieee.org/abstract/document/10160321)
 
-[Online documentation](https://gemstack.readthedocs.org) 
-[About the GEM e2 vehicle](https://publish.illinois.edu/robotics-autonomy-resources/gem/)
 
 ## Demo
 [![Demo Video](https://img.youtube.com/vi/ePmhrkKGKno/0.jpg)](https://www.youtube.com/watch?v=ePmhrkKGKno)
@@ -21,13 +33,17 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
 
 ## 📂 Directory layout
 Please pay attention to MAIN ****
+### Legend
+
+- 🟥 **TODO**
+- 🟧 **early development** (usable, but many features not complete or tested)
+- 🟨 **in development** (usable but to be tuned)
+- 🟩 **stable** (most features complete and tested)
+- 🟦 **mature**
+
 ```text
 .
 
-├── results/                   # Generated figures / plots
-│
-├── rosbags/                   # Data capture & analysis tools
-│
 ├── src/                       # ROS catkin workspace (Noetic)
 │   ├── CMakeLists.txt → /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
 │   ├── basic_launch/          # Launch files for quick testing
@@ -35,38 +51,35 @@ Please pay attention to MAIN ****
 │   ├── readme.txt
 │   ├── utility/               # Generic ROS utilities (tf, loggers…)
 │   └── vehicle_drivers/       # GEM-specific high-level drivers
-|        ├── gem_gnss_control
+|       ├── gem_gnss_control
         ├── gem_ss_control
-        │   ├── actor_collision
-        │   ├── carlo   --------------------------  #  ← SUPPORT MAIN on-vehicle MPC
-                ├── agents.py
-                ├── entities.py  ------------------ #  ← MAIN MPC VEHICLE MODEL
-                ├── geometry.py
-                ├── graphics.py
-                ├── highbay.py   ------------------ #  ← MAIN MPC POLICY
-                ├── highway.py
-                ├── interactive_controllers.py
-                ├── intersection.py
-                ├── mpc_highway.py  --------------- #  ← MAIN MPC COST FUNCTION
-                ├── mpc_intersection.py
-                ├── mpc_roundabout.py
-                ├── pkl_to_csv_converter.py
-                └── world.py
+        │   ├── actor_collision # simulator support
+        |   ├── src
+                ├── carlo                ------------------ 🟨  ← MAIN MPC VEHICLE MODEL FUNCTIONS
+                        ├── entities.py  ------------------ 🟨  ← MAIN MPC VEHICLE KINEMATIC MODEL
+                        ├── highbay.py   ------------------ 🟩  ← MAIN MPC POLICY API
+                        ├── mpc_highway.py  --------------- 🟨  ← MAIN MPC COST FUNCTION
+                        ├── agents.py    ------------------ 🟩  ← MAIN IMAGINARY CAR CLASSES
+                        ├── world.py     ------------------ 🟩  ← MAIN IMAGINARY CARLO WORLD
+                ├── main_highbay_steering_mpc.py ---------- 🟧  ← MAIN MPC RUN FILE
+                ├── controller.py        ------------------ 🟧  ← MAIN MPC CLASS
         │   ├── notebooks
-        │   └── velodyne_simulator 
-        └── gem_visualization
+        │   └── velodyne_simulator # simulator support
+        └── gem_visualization      # simulator support
 ```
-## Main Topics
-The following ROS topics are commonly used in this workspace:
-- `/livox/lidar`
-- `/e2/septentrio_gnss/insnavgeod`
-- `/e2/septentrio_gnss/navsatfix`
-- `/septentrio_gnss/insnavgeod`
-- `/ouster/points`
-- `/ouster/scan`
-- `/tf`
-- `/tf_static`
- rosbag record /e2/septentrio_gnss/insnavgeod /e2/septentrio_gnss/navsatfix /septentrio_gnss/insnavgeod /septentrio_gnss/navsatfix
+### MAIN IDEA: 
+
+we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
+
+- GEM_e4 as autonomous vehicle with inertial frame (0,0), GEM_e2 as human driver.
+
+- Alignment of all units as meter
+        
+- Alignment of different coordinate system of GNSS sensor yaw, Imaginary world simulation heading and real world steering wheel.  
+        
+- Alignment between ros update rate and ros communication delay.
+        
+After all, ackermn cmd control gas pedal and steering wheel (radians).
 
 ## Quick Start
 
@@ -112,7 +125,8 @@ roslaunch basic_launch dbw_joystick.launch
 ```
 
 ## Documentation
-
+[Online documentation](https://gemstack.readthedocs.org) 
+[About the GEM e2 vehicle](https://publish.illinois.edu/robotics-autonomy-resources/gem/)
 - See [src/readme.txt](src/readme.txt) for more launch and usage examples.
 - Refer to each package's README for specific instructions.
 
