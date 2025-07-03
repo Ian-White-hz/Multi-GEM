@@ -5,6 +5,7 @@
 Multi-GEM is a modular framework for research and development with multiple GEM autonomous vehicles, with a special focus on game-theoretic approaches to multi-agent coordination and control. It provides tools, controllers, and utilities for experimenting with and deploying advanced strategies—including those based on game theory—in scenarios involving multiple GEM vehicles, both in simulation and on real hardware.
 
 The framework supports a variety of driving environments—including highways, intersections, and roundabouts—and enables the integration of both classical and advanced control strategies such as Model Predictive Control (MPC) and game-theoretic decision making. Multi-GEM is designed to facilitate rapid prototyping, testing, and deployment of multi-vehicle algorithms, making it ideal for academic research, education, and real-world experimentation.
+
 Key features include:
 
 - Support for multi-agent coordination and control using game-theoretic and classical methods
@@ -15,7 +16,7 @@ Key features include:
 
 Whether you are developing new game-theoretic control algorithms, testing cooperative driving strategies, or deploying on real GEM vehicles, Multi-GEM provides a robust foundation for your work.
 
-
+> Note: For the simulator, please visit https://github.com/yejimun/GEM_simulator.
 
 # Related Works
 ### Towards Robots that Influence Humans over Long-Term Interaction
