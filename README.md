@@ -18,7 +18,7 @@ Whether you are developing new game-theoretic control algorithms, testing cooper
 
 > Note: For the simulator, please visit https://github.com/yejimun/GEM_simulator.
 
-# Related Works
+## Related Works
 ### Towards Robots that Influence Humans over Long-Term Interaction
 **Authors.** Conference/Journal, Year.
 [Original paper](https://ieeexplore.ieee.org/abstract/document/10160321)
@@ -32,7 +32,7 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
 (It is possible to do some offline and simulation work without ROS, but it is highly recommended to install it if you are working on any onboard behavior or training for rosbag files.)
 
 
-## 📂 Directory layout
+## Directory layout
 Please pay attention to MAIN ****
 ### Legend
 
@@ -82,7 +82,7 @@ we build a MPC for GEMSTACK in real world from a relatively sophisticated simula
         
 After all, ackermn cmd control gas pedal and steering wheel (radians).
 
-## Building the Workspace
+## Setup
 
 1. Initialize and configure your catkin workspace:
     ```sh
@@ -96,8 +96,8 @@ After all, ackermn cmd control gas pedal and steering wheel (radians).
     ```sh
     source devel/setup.bash
     ```
-
-## Launching Sensors and Visualization
+## Usage
+### 1.Launching Sensors and Visualization
 
 Example launch commands:
 ```sh
@@ -106,7 +106,7 @@ roslaunch basic_launch visualization.launch
 roslaunch basic_launch dbw_joystick.launch
 ```
 
-## Quick Start
+### 2.Quick Start
 
 To run the GNSS tracker script:
 ```sh
