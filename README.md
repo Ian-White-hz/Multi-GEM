@@ -82,25 +82,6 @@ we build a MPC for GEMSTACK in real world from a relatively sophisticated simula
         
 After all, ackermn cmd control gas pedal and steering wheel (radians).
 
-## Quick Start
-
-To run the GNSS tracker script:
-```sh
-python3 src/vehicle_drivers/gem_gnss_control/scripts/gem_gnss_tracker_pp.py
-```
-
-To run the ss control script:
-```sh
-python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
-```
-
-## Directory Structure
-
-- `src/`: Source code for drivers, utilities, and launch files.
-- `stackelberg_trust/`: Research code for trust and influence in autonomous driving.
-- `results/`: Output plots and results from experiments.
-- `ag1_a_RTK*/`: Example datasets and logs.
-
 ## Building the Workspace
 
 1. Initialize and configure your catkin workspace:
@@ -109,7 +90,7 @@ python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
     ```
 2. Build the workspace:
     ```sh
-    catkin build
+    catkin_make
     ```
 3. Source the setup file:
     ```sh
@@ -123,6 +104,18 @@ Example launch commands:
 roslaunch basic_launch sensor_init.launch
 roslaunch basic_launch visualization.launch
 roslaunch basic_launch dbw_joystick.launch
+```
+
+## Quick Start
+
+To run the GNSS tracker script:
+```sh
+python3 src/vehicle_drivers/gem_gnss_control/scripts/gem_gnss_tracker_pp.py
+```
+
+To run the ss control script:
+```sh
+python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 ```
 
 ## Documentation
