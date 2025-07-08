@@ -53,6 +53,10 @@ class HighwayWorld:
         
         self.car_actions = self.mpc.robot_actions
         self.human_actions = self.mpc.human_actions
+
+        #save human actions to a file
+        np.save("human_actions.npy", self.human_actions)
+        
         # 3. Set control for each car
         for i, car in enumerate(self.cars):
             # first car is ego, second car is the other car
