@@ -86,7 +86,7 @@ After all, ackermn cmd control gas pedal and steering wheel (radians).
 
 1. Initialize and configure your catkin workspace:
     ```sh
-    cd ~/GEM
+    cd ~/Multi-GEM
     ```
 2. Build the workspace:
     ```sh
@@ -115,7 +115,7 @@ python3 src/vehicle_drivers/gem_gnss_control/scripts/gem_gnss_tracker_pp.py
 
 To run the ss control script:
 ```sh
-python3 /src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
+python3 src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 ```
 
 ## Documentation
