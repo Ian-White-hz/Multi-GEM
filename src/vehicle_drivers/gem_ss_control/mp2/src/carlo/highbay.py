@@ -37,7 +37,7 @@ class HighwayWorld:
         self.w.add(c1)
         self.cars.append(c1)
         # 2. Create other car(s)
-        c2 = Car(Point(-8, 3.5), 0, 'blue')
+        c2 = Car(Point(-4, 4), 0, 'blue')
         c2.velocity = Point(0, 0)
         c2.max_speed = 2
         c2.min_speed = 0
