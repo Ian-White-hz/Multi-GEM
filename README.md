@@ -141,6 +141,7 @@ python3 src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 This work builds upon several open-source projects and research contributions:
 
 - **GEMstack**: [https://github.com/krishauser/GEMstack](https://github.com/krishauser/GEMstack)
-- **POLARIS_GEM_e2_Real**: [https://github.com/SafeRoboticsLab/KLGame](https://github.com/SafeRoboticsLab/KLGame)
+- **POLARIS_GEM_e2_Real**: [https://github.com/hangcui1201/POLARIS_GEM_e2_Real](https://github.com/hangcui1201/POLARIS_GEM_e2_Real)
 - **GEM Simulator**: [https://github.com/yejimun/GEM_simulator](https://github.com/yejimun/GEM_simulator)
+- **CARLO**: [https://github.com/Stanford-ILIAD/CARLO](https://github.com/Stanford-ILIAD/CARLO)
 
