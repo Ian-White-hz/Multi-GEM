@@ -70,7 +70,7 @@ Please pay attention to MAIN ****
 ```
 ### MAIN IDEA: 
 
-we build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data ( acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
+We build a MPC for GEMSTACK in real world from a relatively sophisticated simulation platform carlo, the pipline of making this work is to pass real world data ( lon to x, lat to y, absolute yaw) to simulation carlo world(Imaginary). After small horizon iteration, we would have output data (acceleration in m/s^2, heading) from carlo. In order to make these output data align to ackermn cmd, we make calibration with respect to 
 
 - GEM_e4 as autonomous vehicle with inertial frame (0,0), GEM_e2 as human driver.
 
@@ -84,20 +84,20 @@ After all, ackermn cmd control gas pedal and steering wheel (radians).
 
 ## Setup
 
-1. Initialize and configure your catkin workspace:
+### 1. Initialize and configure your catkin workspace:
     ```sh
     cd ~/Multi-GEM
     ```
-2. Build the workspace:
+### 2. Build the workspace:
     ```sh
     catkin_make
     ```
-3. Source the setup file:
+### 3. Source the setup file:
     ```sh
     source devel/setup.bash
     ```
 ## Usage
-### 1.Launching Sensors and Visualization
+### 1. Launching Sensors and Visualization
 
 Example launch commands:
 ```sh
@@ -106,7 +106,7 @@ roslaunch basic_launch visualization.launch
 roslaunch basic_launch dbw_joystick.launch
 ```
 
-### 2.Quick Start
+### 2. Quick Start
 
 To run the GNSS tracker script:
 ```sh
@@ -124,4 +124,23 @@ python3 src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 - See [src/readme.txt](src/readme.txt) for more launch and usage examples.
 - Refer to each package's README for specific instructions.
 
+## Team
+
+**Team Members:**
+- Yan Bai - [yanb2@illinois.edu]
+- Tianhao Ji - [email]
+- Sridharan Subramanian - [ss233@illinois.edu]
+
+**Advisors:**
+- Ye-Ji Mun - [yejimun2@illinois.edu]
+- Mahsa Golchoubian - [mahsa.golchoubian@gmail.com]
+- Katie Driggs-Campbell - [krdc.illinois.edu]
+
+## Acknowledgments
+
+This work builds upon several open-source projects and research contributions:
+
+- **GEMstack**: [https://github.com/krishauser/GEMstack](https://github.com/krishauser/GEMstack)
+- **POLARIS_GEM_e2_Real**: [https://github.com/SafeRoboticsLab/KLGame](https://github.com/SafeRoboticsLab/KLGame)
+- **GEM Simulator**: [https://github.com/yejimun/GEM_simulator](https://github.com/yejimun/GEM_simulator)
 
