@@ -82,6 +82,10 @@ We build a MPC for GEMSTACK in real world from a relatively sophisticated simula
         
 After all, ackermn cmd control gas pedal and steering wheel (radians).
 
+### Work pipline:
+
+<img width="745" height="378" alt="image" src="https://github.com/user-attachments/assets/8e36d85b-965d-4931-9491-88dcdf210b21" />
+
 ## Setup
 
 ### 1. Initialize and configure your catkin workspace:
