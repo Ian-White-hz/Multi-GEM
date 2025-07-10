@@ -128,7 +128,7 @@ python3 src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 
 **Team Members:**
 - Yan Bai - [yanb2@illinois.edu]
-- Tianhao Ji - [email]
+- Tianhao Ji - [davehaoooo@gmail.com]
 - Sridharan Subramanian - [ss233@illinois.edu]
 
 **Advisors:**
