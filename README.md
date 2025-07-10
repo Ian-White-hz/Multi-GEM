@@ -34,9 +34,9 @@ GEMstack uses **Python 3.7+** and **ROS Noetic**.
 ## 📦 Python Dependencies
 
 To run this project, install the following Python packages:
+
     ```sh
     pip install -r requirements.txt
-
     ```
     
 ```txt
