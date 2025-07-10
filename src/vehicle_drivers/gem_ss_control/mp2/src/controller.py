@@ -313,7 +313,6 @@ class MPCcontroller():
         print("steering", steering)
         
         # Clip to vehicle limits
-        # steering = max(min(steering, self.max_steering_angle), -self.max_steering_angle)
         acceleration = max(min(acceleration, self.max_accel), -self.max_accel)
         
         print("acceleration", acceleration)
