@@ -134,6 +134,8 @@ python3 src/vehicle_drivers/gem_ss_control/mp2/src/main_highbay_steering_mpc.py
 **Advisors:**
 - Ye-Ji Mun - [yejimun2@illinois.edu]
 - Mahsa Golchoubian - [mahsa.golchoubian@gmail.com]
+
+**Faculty Advisors:**
 - Katie Driggs-Campbell - [krdc@illinois.edu]
 
 ## Acknowledgments
