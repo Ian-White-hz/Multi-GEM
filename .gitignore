@@ -1,8 +1,4 @@
 /devel
 /build
-# /src/hardware_drivers/ouster-ros
-/GEM/stackelberg
-# /GEM/Gem_e4/__pycache__
-/GEM/rosbags
-/GEM/Gem_e4
-/GEM/results
+/Multi-GEM/results
+/Multi-GEM/src/vehicle_drivers/gem_ss_control/mp2/src/carlo
