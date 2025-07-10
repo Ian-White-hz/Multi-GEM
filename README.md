@@ -31,6 +31,24 @@ Whether you are developing new game-theoretic control algorithms, testing cooper
 GEMstack uses **Python 3.7+** and **ROS Noetic**.  
 (It is possible to do some offline and simulation work without ROS, but it is highly recommended to install it if you are working on any onboard behavior or training for rosbag files.)
 
+## 📦 Python Dependencies
+
+To run this project, install the following Python packages:
+    ```sh
+    pip install -r requirements.txt
+
+    ```
+    
+```txt
+matplotlib==3.7.4
+numpy==1.23.5
+open3d==0.13.0
+opencv-python==4.9.0.80
+pandas==2.0.3
+pygame==2.6.1
+scipy==1.3.3
+
+
 
 ## Directory layout
 Please pay attention to MAIN ****
