@@ -20,8 +20,8 @@ Whether you are developing new game-theoretic control algorithms, testing cooper
 
 ## Related Works
 ### Towards Robots that Influence Humans over Long-Term Interaction
-**Authors.** Conference/Journal, Year.
-[Original paper](https://ieeexplore.ieee.org/abstract/document/10160321)
+**Shahabedin Sagheb, Ye-Ji Mun, Neema Ahmadian, Benjamin A. Christie, Andrea Bajcsy, Katherine Driggs-Campbell, Dylan P. Losey.** IEEE International Conference on Robotics and Automation (ICRA), 2023.
+[Original paper](https://ieeexplore.ieee.org/abstract/document/10160321) | [arXiv preprint](https://arxiv.org/abs/2209.10588)
 
 
 ## Demo
