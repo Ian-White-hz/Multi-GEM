@@ -166,5 +166,6 @@ This work builds upon several open-source projects and research contributions:
 - **GEMstack**: [https://github.com/krishauser/GEMstack](https://github.com/krishauser/GEMstack)
 - **POLARIS_GEM_e2_Real**: [https://github.com/hangcui1201/POLARIS_GEM_e2_Real](https://github.com/hangcui1201/POLARIS_GEM_e2_Real)
 - **GEM Simulator**: [https://github.com/yejimun/GEM_simulator](https://github.com/yejimun/GEM_simulator)
+- **LiDAR-Based-Lane-Navigation**: [https://github.com/Bryan1203/LiDAR-Based-Lane-Navigation](https://github.com/Bryan1203/LiDAR-Based-Lane-Navigation)
 - **CARLO**: [https://github.com/Stanford-ILIAD/CARLO](https://github.com/Stanford-ILIAD/CARLO)
 
